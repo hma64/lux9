@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LUX vêtements — Mode homme</title>
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body id="catalogPage">
+  <header class="navbar" style="display:none">
+    <!-- legacy navbar hidden; replaced by injectNav() -->
+  </header>
+
+  <main id="home">
+    <!-- HERO SLIDER -->
+    <section class="hero-slider" id="heroSlider">
+      <div class="hero-slides">
+        <div class="hero-slide">
+          <img src="assets/hero1.jpg" alt="Collection Tendance" loading="eager" />
+          <div class="hero-slide-overlay">
+            <div class="hero-slide-content">
+              <h2>Nouvelle<br><span>Collection</span><br>Printemps 2025</h2>
+              <p>Découvrez les dernières tendances de la maison.</p>
+              <a class="btn btn-primary" href="produits.html">Voir la collection</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-slide">
+          <img src="assets/hero2.jpg" alt="Vente Flash" loading="lazy" />
+          <div class="hero-slide-overlay">
+            <div class="hero-slide-content">
+              <h2>Vente <span>Flash</span><br>Jusqu'à -50%</h2>
+              <p>Offres exclusives, durée limitée.</p>
+              <a class="btn btn-primary" href="produits.html?category=vente-flash">Profiter</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-slide">
+          <img src="assets/hero3.jpg" alt="Déstockage" loading="lazy" />
+          <div class="hero-slide-overlay">
+            <div class="hero-slide-content">
+              <h2>Déstockage<br><span>Exceptionnel</span></h2>
+              <p>Des produits de qualité à prix réduit.</p>
+              <a class="btn btn-primary" href="produits.html?category=destockage">Explorer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="hero-prev" aria-label="Précédent">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="hero-next" aria-label="Suivant">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="hero-dots">
+        <button class="hero-dot active" aria-label="Slide 1"></button>
+        <button class="hero-dot" aria-label="Slide 2"></button>
+        <button class="hero-dot" aria-label="Slide 3"></button>
+      </div>
+    </section>
+
+    <section id="shop">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title" id="sectionShopTitle">Boutique <span>signature</span></h2>
+          <p class="section-subtitle" id="sectionShopSub">Filtrez par catégorie et ouvrez une fiche produit pour choisir couleur et tailles avant commande.</p>
+        </div>
+        <!-- Dynamic category filter (populated from Firestore) -->
+        <div class="filter-bar reveal" id="filterBar">
+          <button type="button" class="filter-btn active" data-category="all">Tout</button>
+        </div>
+        <div class="shop-toolbar reveal">
+          <input class="search-input" id="searchInput" type="search" placeholder="Rechercher un produit…" />
+          <button type="button" class="layout-kebab" id="layoutKebab" aria-label="Vue liste" title="Vue liste / grille">
+            <span class="layout-kebab-dot"></span>
+            <span class="layout-kebab-dot"></span>
+            <span class="layout-kebab-dot"></span>
+          </button>
+        </div>
+        <div class="products-grid" id="productsContainer"></div>
+        <div class="state-box" id="stateBox" style="display: none"></div>
+      </div>
+    </section>
+
+    <section id="categories">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title" id="sectionCatTitle">Catégories <span>luxe</span></h2>
+          <p class="section-subtitle" id="sectionCatSub"></p>
+        </div>
+        <!-- Dynamic categories grid populated by index-page.js -->
+        <div class="categories-grid reveal" id="categoriesGrid"></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title" id="sectionContactTitle">Contact <span>Luxury Team</span></h2>
+          <p class="section-subtitle" id="sectionContactSub"></p>
+        </div>
+        <div class="contact-box reveal">
+          <a class="contact-item" href="https://wa.me/21698137767" target="_blank" rel="noopener">
+            <div class="contact-title">📱 WhatsApp</div>
+            <div class="contact-value">+216 98 137 767</div>
+          </a>
+          <a class="contact-item" href="https://m.me/" target="_blank" rel="noopener">
+            <div class="contact-title">💬 Messenger</div>
+            <div class="contact-value">Lux Vetements Homme</div>
+          </a>
+          <a class="contact-item" href="https://instagram.com/" target="_blank" rel="noopener">
+            <div class="contact-title">📷 Instagram</div>
+            <div class="contact-value">@luxvetementshomme</div>
+          </a>
+          <a class="contact-item" href="tel:+21698137767">
+            <div class="contact-title">📞 Phone</div>
+            <div class="contact-value" id="callNowLbl">Call Now</div>
+          </a>
+          <a class="contact-item" href="mailto:contact@luxvetementshomme.com">
+            <div class="contact-title">✉ Contact</div>
+            <div class="contact-value">contact@luxvetementshomme.com</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="dim" id="cartDim"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <button class="cart-btn" id="closeCartBtn" type="button" style="align-self: flex-end; margin: 8px">✕</button>
+    <div class="cart-head">
+      <strong id="cartHeadLabel">Panier</strong>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div style="display: flex; justify-content: space-between; font-weight: 800; margin-bottom: 10px">
+        <span id="cartTotalLabel">Total</span>
+        <span id="cartTotal">0 DT</span>
+      </div>
+      <button class="btn btn-primary" id="checkoutBtn" type="button" style="width: 100%">Valider mes achats</button>
+    </div>
+  </aside>
+
+  <footer>
+    <div class="container">
+      <span id="footerNote">LUX vêtements</span> — © <span id="year"></span>
+    </div>
+  </footer>
+
+  <script type="module" src="js/index-page.js"></script>
+  <script type="module">
+    import { injectNav, initHeroSlider } from './js/nav.js';
+    injectNav({ page: 'home' });
+    initHeroSlider('heroSlider');
+  </script>
+</body>
+</html>
